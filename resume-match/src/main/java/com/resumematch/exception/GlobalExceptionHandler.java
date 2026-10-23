@@ -40,5 +40,17 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>(errorResponse, HttpStatus.BAD_GATEWAY);
     }
 
+    @ExceptionHandler(ResumeMatchServiceException.class)
+    public ResponseEntity<?> handleResumeMatchServiceException(ResumeMatchServiceException e){
+        ResumeScreeningErrorResponse errorResponse = new ResumeScreeningErrorResponse(LocalDateTime.now(), e.getMessage(), "Unable to match resume with the job.");
+        return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(IllegalArgumentException.class)
+    public ResponseEntity<?> handleIllegalArgumentException(IllegalArgumentException e){
+        ResumeScreeningErrorResponse errorResponse = new ResumeScreeningErrorResponse(LocalDateTime.now(), e.getMessage(), "Unable to process request.");
+        return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
+    }
+
 
 }

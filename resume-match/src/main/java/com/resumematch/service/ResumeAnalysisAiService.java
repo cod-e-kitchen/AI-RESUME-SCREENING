@@ -80,6 +80,6 @@ public class ResumeAnalysisAiService {
 
     private String buildPrompt(String resumeText, String jobDescription) {
 //        AiContextPromptUtil aiContextPromptUtil = new AiContextPromptUtil();
-        return AiContextPromptUtil.PROMPT.formatted(resumeText, jobDescription);
+        return AiContextPromptUtil.EXTRACTION_PROMPT.formatted(resumeText, jobDescription);
     }
 }
